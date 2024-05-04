@@ -49,7 +49,7 @@ void main(){
 
     for(int i = 0; i < x; i++){
         q_x = i;
-        edge_y = (float) (pow(d, 3) / (pow(q_x, 2) + pow(d, 2)));
+        edge_y = (float) (pow(d, 3) / (pow(q_x, 2) + pow(d, 2));
         n_points += round(edge_y);
         #if PRINT_EDGE_VALUES==1
             if(edge_y > 0){
