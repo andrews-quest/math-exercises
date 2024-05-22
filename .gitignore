@@ -1,2 +1,9 @@
 test.c
-text.exe
+*~
+*.exe
+
+.idea/
+manim/__pycache__/
+matheIII/__pycache__/
+matheIII/media/
+media/
