@@ -19,16 +19,13 @@ def deviation_trapez(h,x):
 def func(x):
     return np.float64(((x**2) + 3)*(np.e ** (2*x)))
 
-def w(f):
-    pass
-
-def area_real(x):
+def area_real_func(x):
     return (1/4) * (2*(x**2)-2*x+7)*(np.e**(2*x))
 
 trapez_vals = []
 x_trapez_vals = []
 
-def trapez(w, t, n):
+def trapez(t, n):
     global x_trapez_vals
     global area_trapez
     global sum_dev_trapez
@@ -40,7 +37,6 @@ def trapez(w, t, n):
     for x_n in x_trapez_vals:
         trapez_vals.append(func(x_n))
         area_trapez += ((h)/2)*(func(x_n) + y_prev)
-        print("trapez " + str(area_trapez))
         x_prev = x_n
         y_prev = func(x_n)
         sum_dev_trapez += deviation_trapez(h, x_n)
@@ -52,7 +48,7 @@ x_kepler_vals_curve = []
 def parabola(x, a, b):
     return a*(x**2) + b
 
-def kepler(w, t, n):
+def kepler(t, n):
     global x_kepler_vals
     global kepler_vals
     global area_kepler
@@ -70,7 +66,6 @@ def kepler(w, t, n):
                               (func((x_kepler_vals[i+1] + x_kepler_vals[i])/2) * 4) +
                                             func(x_kepler_vals[i+1])))
 
-        print("kepler " + str(area_kepler))
         constants = curve_fit(parabola, [x for x in np.linspace(x_kepler_vals[i], x_kepler_vals[i+1], 100)],
                     [func(x) for x in np.linspace(x_kepler_vals[i], x_kepler_vals[i+1], 100)])
 
@@ -82,11 +77,11 @@ def kepler(w, t, n):
         sum_dev_kepler += deviation_kepler(h, x_kepler_vals[i+1])
 
 
-def interpolation(w, t, n):
+def interpolation(t, n):
     global area_real
-    area_real = area_real(t)
-    trapez(w, t, n)
-    kepler(w, t, n)
+    area_real = area_real_func(t)
+    trapez(t, n)
+    kepler(t, n)
     plot(t, n)
 
 
@@ -106,11 +101,6 @@ def plot(t, n):
     real_func_values = [func(x) for x in x_values]
     fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(16, 8))
 
-    # ax.spines['bottom'].set_position('zero')
-    # ax.spines['left'].set_position('zero')
-    # ax.spines['right'].set_color('none')
-    # ax.spines['top'].set_color('none')
-
     ax[0].plot(x_values, real_func_values, label="f(x)")
     ax[0].plot(x_trapez_vals, trapez_vals, label="Approximation nach Trapezregel")
     if(t<=10):
@@ -126,6 +116,5 @@ def plot(t, n):
 
     plt.show()
 
-
-interpolation(0, 1, 4)
+interpolation(1, 20)
 
