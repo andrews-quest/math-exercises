@@ -89,13 +89,11 @@ def interpolation(t, n):
 def plot(t, n):
     h = x_kepler_vals[1]
 
-    print("Die Fläche unter dem Graph beträgt " + str(area_real))
-    print("Die Fläche nach der Trapezregel ist " + str(area_trapez) +
-          ", die theoretische Abweichung ist " + str(sum_dev_trapez) +
-          ", die praktische Abweichung ist " + str(abs(area_real - area_trapez)))
-    print("Die Fläche nach der Keplerregel ist " + str(area_kepler) +
-          ", die theoretische Abweichung ist " + str(sum_dev_kepler) +
-          ", die praktische Abweichung ist " + str(abs(area_real - area_kepler)))
+    print(f"Die Fläche unter dem Graph beträgt {area_real}")
+    print(f"Die Fläche nach der Trapezregel ist {area_trapez}, die theoretische Abweichung ist {sum_dev_trapez}, die " 
+          f"praktische Abweichung ist {abs(area_real - area_trapez)}")
+    print("Die Fläche nach der Keplerregel ist {area_kepler}, die theoretische Abweichung ist {sum_dev_kepler}, die "
+          f"praktische Abweichung ist {abs(area_real - area_kepler)}")
 
     x_values = [x for x in np.linspace(0, t, 100)]
     real_func_values = [func(x) for x in x_values]
